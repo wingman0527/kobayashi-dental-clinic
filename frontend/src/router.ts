@@ -9,7 +9,7 @@ const OralSurgery = () => import('./pages/services/OralSurgery.vue')
 const FAQ = () => import('./pages/FAQ.vue')
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/kobayashi-dental-clinic/'),
   routes: [
     { path: '/', name: 'home', component: HomePage },
   { path: '/services/preventive', name: 'services-preventive', component: Preventive },
