@@ -16,7 +16,7 @@
           <Transition name="fade"><p v-if="errorContact" class="p" style="color:#c0392b">送信できませんでした。時間をおいて再度お試しください。</p></Transition>
           <p class="p note" style="margin-top:10px;font-size:12px">このフォームは Formspree を利用しています。送信によりプライバシーポリシーに同意したものとみなされます。</p>
         </form>
-  <form class="card form coming-soon" @submit.prevent="submitAppt" aria-disabled="true">
+  <form class="card form coming-soon" @submit.prevent="submitAppt" aria-disabled="true" @click="toggleOverlay">
           <h3>予約</h3>
           <label>お名前<input v-model="appt.name" :disabled="bookingDisabled" required /></label>
           <label>メール<input v-model="appt.email" type="email" :disabled="bookingDisabled" required /></label>
@@ -27,7 +27,7 @@
           </div>
           <label>備考<textarea v-model="appt.note" rows="3" :disabled="bookingDisabled" /></label>
           <button class="button" :disabled="true" title="Coming Soon">予約する</button>
-          <div class="soon-overlay">
+          <div class="soon-overlay" :class="{ active: overlayActive }">
             <div class="overlay-inner">
               <span class="soon-label">COMING SOON</span>
               <p class="overlay-msg">WEB予約は準備中です。お電話でのご予約は
@@ -52,9 +52,14 @@ const errorContact = ref(false)
 const loadingAppt = ref(false)
 const doneAppt = ref(false)
 const bookingDisabled = true
+const overlayActive = ref(false)
 
 const contact = reactive({ name: '', email: '', message: '', gotcha: '' })
 const appt = reactive({ name: '', email: '', phone: '', date: '', time: '', note: '' })
+
+function toggleOverlay() {
+  overlayActive.value = !overlayActive.value
+}
 
 const FORMSPREE_ENDPOINT = (import.meta as any).env?.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/xxxxxxxx'; // ← xxxxxxxx を実フォームIDに変更
 
@@ -84,9 +89,7 @@ async function submitContact(){
 async function submitAppt(){
   // 一時停止中：送信しない
   if (bookingDisabled) return
-  loadingAppt.value = true
-  doneAppt.value = false
-  try{ await api.post('/api/appointment', appt) ; doneAppt.value = true ; Object.assign(appt,{name:'',email:'',phone:'',date:'',time:'',note:''}) } finally{ loadingAppt.value = false }
+  // 現在は使用しないため、何もしない
 }
 </script>
 <style scoped>
@@ -100,12 +103,28 @@ button[disabled]{opacity:.6}
 .coming-soon{position:relative;}
 .soon-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(255,255,255,0);color:var(--fg);border-radius:12px;transition:background .25s ease, opacity .25s ease;opacity:0;text-align:center}
 .coming-soon:hover .soon-overlay{background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(3px);opacity:1}
+.soon-overlay.active{background:rgba(255,255,255,.9);backdrop-filter:saturate(1.2) blur(3px);opacity:1}
 .overlay-inner{max-width:260px}
 .soon-label{display:inline-block;padding:8px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.95);font-weight:700;letter-spacing:.12em;font-size:12px}
 .overlay-msg{margin:14px 0 0;font-size:14px;line-height:1.5;font-weight:500}
 .overlay-msg a{text-decoration:none;font-weight:600}
 @media (max-width: 900px){
   .forms{grid-template-columns:1fr}
+}
+/* タッチデバイス対応 */
+@media (hover: none) and (pointer: coarse) {
+  .soon-overlay {
+    opacity: 0.3;
+    background: rgba(255,255,255,0.3);
+  }
+  .soon-overlay.active {
+    opacity: 1;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: saturate(1.2) blur(3px);
+  }
+  .coming-soon {
+    cursor: pointer;
+  }
 }
 </style>
 <style>
