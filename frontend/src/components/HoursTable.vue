@@ -50,4 +50,44 @@ thead th{font-weight:600;color:#111114cc}
 tbody th{text-align:left;white-space:nowrap;color:#111114cc}
 tr:last-child td, tr:last-child th{border-bottom:none}
 .note{margin:8px 4px;color:var(--muted);font-size:12px}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .tbl {
+    font-size: 12px;
+    min-width: 480px;
+  }
+  
+  th, td {
+    padding: 4px 6px;
+  }
+  
+  tbody th {
+    font-size: 11px;
+  }
+  
+  .note {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  
+  .hoursTable {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tbl {
+    font-size: 11px;
+    min-width: 420px;
+  }
+  
+  th, td {
+    padding: 3px 4px;
+  }
+  
+  tbody th {
+    font-size: 10px;
+  }
+}
 </style>

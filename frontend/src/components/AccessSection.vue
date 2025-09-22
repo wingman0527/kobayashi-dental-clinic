@@ -50,8 +50,53 @@ const mapSrc = computed(() => {
 .map{height:100%}
 .mapPh{height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#f0f0f3}
 .mapFrame{width:100%;height:100%;min-height:260px;border-radius:12px}
+
 @media (max-width: 900px){
   .wrap{grid-template-columns:1fr}
+}
+
+/* スマートフォン対応強化 */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .mapFrame {
+    min-height: 200px;
+    height: 200px;
+  }
+  
+  .mapPh {
+    min-height: 200px;
+    height: 200px;
+  }
+  
+  .info {
+    overflow-x: hidden;
+  }
+  
+  .info .p {
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .mapFrame {
+    min-height: 180px;
+    height: 180px;
+  }
+  
+  .mapPh {
+    min-height: 180px;
+    height: 180px;
+    font-size: 14px;
+  }
 }
 </style>
 <style>
