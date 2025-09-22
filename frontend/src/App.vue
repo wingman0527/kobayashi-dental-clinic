@@ -37,13 +37,7 @@ onMounted(async () => {
         sat: '09:30 - 13:00 / 14:30 - 16:30',
         sun_holiday: '休診（日・祝）'
       },
-      services: [
-        { name: '一般歯科', path: '/services/general' },
-        { name: '予防・審美歯科', path: '/services/preventive' },
-        { name: '矯正歯科', path: '/services/orthodontics' },
-        { name: '小児歯科', path: '/services/pediatric' },
-        { name: '補綴・口腔外科', path: '/services/oral-surgery' }
-      ]
+      services: ['歯科', '矯正歯科', '小児歯科', '歯科口腔外科']
     }
   }
 })
