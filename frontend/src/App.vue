@@ -27,6 +27,23 @@ onMounted(async () => {
     clinic.value = {
       name: '小林歯科クリニック',
       tagline: 'あなたの笑顔を、美しく健やかに',
+      motto: 'いつもの治療を、ていねいに。',
+      address: '東京都江戸川区西葛西6-16-4 エスペランス3F',
+      phone: '03-3878-4182',
+      access: 'JR京葉線/東京メトロ東西線 西葛西駅南口 徒歩1分',
+      director: '小林 太郎',
+      hours: {
+        mon_fri: '9:00-12:30 / 14:30-19:00',
+        sat: '9:00-12:30 / 14:30-17:00',
+        sun_holiday: '休診'
+      },
+      services: [
+        { name: '一般歯科', path: '/services/general' },
+        { name: '予防・審美歯科', path: '/services/preventive' },
+        { name: '矯正歯科', path: '/services/orthodontics' },
+        { name: '小児歯科', path: '/services/pediatric' },
+        { name: '補綴・口腔外科', path: '/services/oral-surgery' }
+      ]
     }
   }
 })
