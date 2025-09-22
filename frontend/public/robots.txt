@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wingman0527.github.io/kobayashi-dental-clinic/sitemap.xml
