@@ -4,7 +4,7 @@
       <router-link class="brand" to="/">
         <img class="brand-icon" src="/favicon.svg" alt="" aria-hidden="true" />
         <span class="brand-text">{{ clinicName }}</span>
-        <span class="tag">いつもの治療を、<br class="mobile-br">ていねいに。</span>
+        <span class="tag">いつもの治療を、ていねいに。</span>
       </router-link>
       <button class="menu-toggle" @click="toggleMenu" :class="{ active: menuOpen }">
         <span></span>
@@ -44,8 +44,7 @@ function closeMenu() {
 .brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.2px;text-decoration:none;color:var(--fg)}
 .brand-icon{width:18px;height:18px;display:block}
 .brand-text{white-space:nowrap}
-.tag{color:var(--muted);font-size:12.5px;margin-left:4px}
-.mobile-br{display:none}
+.tag{color:var(--muted);font-size:12.5px;margin-left:4px;white-space:nowrap}
 .menu-toggle{display:none}
 .links{display:flex;gap:20px}
 .links a{color:#111114cc;text-decoration:none;white-space:nowrap}
@@ -71,7 +70,7 @@ function closeMenu() {
   .tag {
     font-size: 10px;
     margin-left: 0;
-    line-height: 1.3;
+    white-space: nowrap;
   }
   
   .mobile-br {
