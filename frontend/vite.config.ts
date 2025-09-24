@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/kobayashi-dental-clinic/', // GitHub Pages用のベースパス
+  base: '/', // カスタムドメイン用のベースパス
   server: {
     port: 5173,
     proxy: {
